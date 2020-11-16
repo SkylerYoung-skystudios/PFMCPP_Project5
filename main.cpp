@@ -47,10 +47,7 @@ struct Shoe
     bool beingWorn = false;
     
     Shoe();
-    ~Shoe()
-    {
-        std::cout << "Shoe Destroyed\n";
-    }
+    ~Shoe();
 
     void putOn ( std::string firstShoe = "R", bool leftFirst = true);
     void takeOff ( std::string firstShoe = "R", bool leftFirst = true );
@@ -59,6 +56,10 @@ struct Shoe
 };
 
 Shoe::Shoe(){}
+Shoe::~Shoe()
+{
+    std::cout << "Shoe Destroyed\n";
+}
 
 void Shoe::putOn(std::string firstShoe, bool leftFirst) 
 {
@@ -109,10 +110,7 @@ struct Wurlitzer
     int tuning = 440;
 
     Wurlitzer();
-    ~Wurlitzer()
-    {
-        std::cout << "Wurlitzer Destroyed\n";
-    }
+    ~Wurlitzer();
 
     void changeVolume ( int knobPosition );
     void play ( int note = 23 );
@@ -130,7 +128,11 @@ numKeys ( 49 ),
 output ( 23 ),
 on ( false )
 {
+}
 
+Wurlitzer::~Wurlitzer()
+{
+    std::cout << "Wurlitzer Destroyed\n";
 }
 
 void Wurlitzer::changeVolume( int knobPosition ) 
@@ -185,10 +187,7 @@ struct ElectricBass
     int tuning = 442;
     
     ElectricBass();
-    ~ElectricBass()
-    {
-        std::cout << "Wurlitzer Destroyed\n";
-    }
+    ~ElectricBass();
 
     void play ( int note =  18 );
     void sold ( int price = 1200 );
@@ -197,6 +196,10 @@ struct ElectricBass
 };
 
 ElectricBass::ElectricBass(){}
+ElectricBass::~ElectricBass()
+{
+    std::cout << "ElectricBass Destroyed\n";
+}
 
 void ElectricBass::play( int note ) 
 {
@@ -238,80 +241,87 @@ void ElectricBass::checkStrings (int timesPlayed)
  new UDT 4:
  with 2 member functions
  */
-struct band
+struct Band
 {
     Wurlitzer keys;
     ElectricBass bass;
 
-    void tune()
-    {
-        keys.tuning = bass.tuning;
-    }
-
-    void turnDown(int amount)
-    {
-        keys.output -= amount;
-        bass.output -= amount;
-    }
-
-    band();
-    ~band();
+    void tune();
+    void turnDown(int amount);
+    
+    Band();
+    ~Band();
 };
 
-band::band(){}
-band::~band()
+void Band::tune()
 {
-        if (keys.on)
-        {
-            std::cout << "Turn off Wurlitzer\n";
-        }
+    keys.tuning = bass.tuning;   
+}
+
+void Band::turnDown(int amount)
+{
+    keys.output -= amount;
+    bass.output -= amount;  
+}
+
+Band::Band(){}
+Band::~Band()
+{
+    if (keys.on)
+    {
+        std::cout << "Turn off Wurlitzer\n";
+    }
 }
 
 /*
  new UDT 5:
  with 2 member functions
  */
-struct clothing
+struct Clothing
 {
     Shoe blazer;
     Shoe vans;
     bool vansBeingWorn = false;
-    void switchShoes()
-    {
-        if (blazer.beingWorn == true)
-        {
-            blazer.beingWorn = false;
-            vans.beingWorn = true;
-        }
-        else
-        {
-            blazer.beingWorn = true;
-        }
-    }
+    void switchShoes();
 
-    void changeSize(int amount)
-    {
-        blazer.size += amount;
-        vans.size += amount;
-    }
+    void changeSize(int amount);
 
-    clothing();
-    ~clothing();
+    Clothing();
+    ~Clothing();
 
 };
 
-clothing::clothing(){}
-clothing::~clothing()
+Clothing::Clothing(){}
+Clothing::~Clothing()
 {
-        if (vansBeingWorn)
-        {
-            std::cout << "Shoe being worn is vans\n";
-        }
-        else
-        {
-            std::cout << "Shoe being worn is blazer\n";
-        }
+    if (vansBeingWorn)
+    {
+        std::cout << "Shoe being worn is vans\n";
     }
+    else
+    {
+        std::cout << "Shoe being worn is blazer\n";
+    }
+}
+
+void Clothing::switchShoes()
+{
+    if (blazer.beingWorn == true)
+    {
+        blazer.beingWorn = false;
+        vans.beingWorn = true;
+    }
+    else
+    {
+        blazer.beingWorn = true;
+    }
+}
+
+void Clothing::changeSize(int amount)
+{
+    blazer.size += amount;
+    vans.size += amount;
+}
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
@@ -332,8 +342,8 @@ int main()
     Shoe blazer, airforce1;
     Wurlitzer red, tan;
     ElectricBass jaguar, precision;
-    band bar, concert;
-    clothing chris;
+    Band bar, concert;
+    Clothing chris;
 
     jaguar.play(24);
     tan.power(true);
