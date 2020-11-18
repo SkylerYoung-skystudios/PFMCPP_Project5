@@ -84,6 +84,10 @@ struct Shoe
     void takeOff ( std::string firstShoe = "R", bool leftFirst = true );
     void throwAway ( bool donate = false );
     void wearDown(int timesWorn);
+    void print()
+    {
+        std::cout << "These shoes are in " << this->condition << " condition" << std::endl;
+    }
 };
 
 Shoe::Shoe(){}
@@ -148,6 +152,10 @@ struct Wurlitzer
     void power ( bool switchPosition = true );
     void printCondition();
     int swellVolume(int amount, int time);
+    void print()
+    {
+        std::cout << "The Wulitzer has " << this->numKeys << " keys" << std::endl;
+    }
 };
 
 Wurlitzer::Wurlitzer() :
@@ -224,6 +232,10 @@ struct ElectricBass
     void sold ( int price = 1200 );
     void restring ( bool restring = true );
     void checkStrings (int timesPlayed);
+    void print()
+    {
+        std::cout << "This Bass costs $" << this->cost << std::endl;
+    }
 };
 
 ElectricBass::ElectricBass(){}
@@ -276,9 +288,14 @@ struct Band
 {
     Wurlitzer keys;
     ElectricBass bass;
+    int members = 2;
 
     void tune();
     void turnDown(int amount);
+    void print()
+    {
+        std::cout << "There are " << this->members << " members in the band" << std::endl;
+    }
     
     Band();
     ~Band();
@@ -391,4 +408,17 @@ int main()
     bar.turnDown(6);
 
     chris.changeSize(1);
+
+    std::cout << "These shoes are in " << blazer.condition << " condition" << std::endl;
+
+    std::cout << "The Wulitzer has " << red.numKeys << " keys" << std::endl;
+
+    std::cout << "This Bass costs $" << jaguar.cost << std::endl;
+
+    std::cout << "There are " << bar.members << " members in the band" << std::endl;
+
+    blazer.print();
+    red.print();
+    jaguar.print();
+    bar.print();
 }
