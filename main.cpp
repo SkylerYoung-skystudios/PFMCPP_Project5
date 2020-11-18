@@ -411,14 +411,17 @@ int main()
 
     std::cout << "These shoes are in " << blazer.condition << " condition" << std::endl;
 
+    blazer.print();
+
     std::cout << "The Wulitzer has " << red.numKeys << " keys" << std::endl;
+
+    red.print();
 
     std::cout << "This Bass costs $" << jaguar.cost << std::endl;
 
+    jaguar.print();
+
     std::cout << "There are " << bar.members << " members in the band" << std::endl;
 
-    blazer.print();
-    red.print();
-    jaguar.print();
     bar.print();
 }
