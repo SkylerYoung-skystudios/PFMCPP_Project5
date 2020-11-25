@@ -50,6 +50,7 @@ You don't have to do this, you can keep your current object name and just change
 
 
 #include <iostream>
+#include "LeakedObjectDetector.h"
 /*
  copied UDT 1:
  */
@@ -74,6 +75,8 @@ struct Shoe
     {
         std::cout << "These shoes are in " << this->condition << " condition" << std::endl;
     }
+
+    JUCE_LEAK_DETECTOR(Shoe)
 };
 
 Shoe::Shoe(){}
@@ -116,6 +119,13 @@ void Shoe::wearDown(int timesWorn)
 
     std::cout << "Sole percent left " << percentOfSoleLeft << std::endl;
 }
+
+struct ShoeWrapper
+{
+    ShoeWrapper(Shoe* shoePtr) : theShoe(shoePtr) { }
+    ~ShoeWrapper() { delete theShoe; }
+    Shoe* theShoe = nullptr;
+};
 /*
  copied UDT 2:
  */
@@ -142,6 +152,8 @@ struct Wurlitzer
     {
         std::cout << "The Wulitzer has " << this->numKeys << " keys" << std::endl;
     }
+
+    JUCE_LEAK_DETECTOR(Wurlitzer)
 };
 
 Wurlitzer::Wurlitzer() :
@@ -195,6 +207,13 @@ int Wurlitzer::swellVolume(int amount, int time)
     }
     return swell;
 }
+
+struct WurlitzerWrapper
+{
+    WurlitzerWrapper(Wurlitzer* wurlitzerPtr) : theWurli(wurlitzerPtr) { }
+    ~WurlitzerWrapper() { delete theWurli; }
+    Wurlitzer* theWurli = nullptr;
+};
 /*
  copied UDT 3:
  */
@@ -222,6 +241,8 @@ struct ElectricBass
     {
         std::cout << "This Bass costs $" << this->cost << std::endl;
     }
+
+    JUCE_LEAK_DETECTOR(ElectricBass)
 };
 
 ElectricBass::ElectricBass(){}
@@ -266,6 +287,13 @@ void ElectricBass::checkStrings (int timesPlayed)
         std::cout << "Strings are still good!" << std::endl;
     }
 } 
+
+struct BassWrapper
+{
+    BassWrapper(ElectricBass* bassPtr) : theBass(bassPtr) { }
+    ~BassWrapper() { delete theBass; }
+    ElectricBass* theBass = nullptr;
+};
 /*
  new UDT 4:
  with 2 member functions
@@ -285,6 +313,8 @@ struct Band
     
     Band();
     ~Band();
+
+    JUCE_LEAK_DETECTOR(Band)
 };
 
 void Band::tune()
@@ -307,6 +337,12 @@ Band::~Band()
     }
 }
 
+struct BandWrapper
+{
+    BandWrapper(Band* bandPtr) : theBand(bandPtr) { }
+    ~BandWrapper() { delete theBand; }
+    Band* theBand = nullptr;
+};
 /*
  new UDT 5:
  with 2 member functions
@@ -323,6 +359,7 @@ struct Clothing
     Clothing();
     ~Clothing();
 
+    JUCE_LEAK_DETECTOR(Clothing)
 };
 
 Clothing::Clothing(){}
@@ -356,6 +393,13 @@ void Clothing::changeSize(int amount)
     blazer.size += amount;
     vans.size += amount;
 }
+
+struct ClothingWrapper
+{
+    ClothingWrapper(Clothing* clothesPtr) : theClothes(clothesPtr) { }
+    ~ClothingWrapper() { delete theClothes; }
+    Clothing* theClothes = nullptr;
+};
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
@@ -373,41 +417,41 @@ void Clothing::changeSize(int amount)
 #include <iostream>
 int main()
 {
-    Shoe blazer, airforce1;
-    Wurlitzer red, tan;
-    ElectricBass jaguar, precision;
-    Band bar, concert;
-    Clothing chris;
+    ShoeWrapper blazer( new Shoe ), airforce1( new Shoe );
+    WurlitzerWrapper red( new Wurlitzer ), tan( new Wurlitzer );
+    BassWrapper jaguar( new ElectricBass ) , precision( new ElectricBass );
+    BandWrapper bar( new Band ), concert( new Band );
+    ClothingWrapper chris( new Clothing );
 
-    jaguar.play(24);
-    tan.power(true);
-    blazer.putOn("L", false);
+    jaguar.theBass->play(24);
+    tan.theWurli->power(true);
+    blazer.theShoe->putOn("L", false);
 
-    tan.printCondition();
+    tan.theWurli->printCondition();
 
-    blazer.wearDown(47);
+    blazer.theShoe->wearDown(47);
 
-    precision.checkStrings(84);
+    precision.theBass->checkStrings(84);
 
-    red.output = red.swellVolume(60, 5);
+    red.theWurli->output = red.theWurli->swellVolume(60, 5);
 
-    bar.turnDown(6);
+    bar.theBand->turnDown(6);
 
-    chris.changeSize(1);
+    chris.theClothes->changeSize(1);
 
-    std::cout << "These shoes are in " << blazer.condition << " condition" << std::endl;
+    std::cout << "These shoes are in " << blazer.theShoe->condition << " condition" << std::endl;
 
-    blazer.print();
+    blazer.theShoe->print();
 
-    std::cout << "The Wulitzer has " << red.numKeys << " keys" << std::endl;
+    std::cout << "The Wulitzer has " << red.theWurli->numKeys << " keys" << std::endl;
 
-    red.print();
+    red.theWurli->print();
 
-    std::cout << "This Bass costs $" << jaguar.cost << std::endl;
+    std::cout << "This Bass costs $" << jaguar.theBass->cost << std::endl;
 
-    jaguar.print();
+    jaguar.theBass->print();
 
-    std::cout << "There are " << bar.members << " members in the band" << std::endl;
+    std::cout << "There are " << bar.theBand->members << " members in the band" << std::endl;
 
-    bar.print();
+    bar.theBand->print();
 }
