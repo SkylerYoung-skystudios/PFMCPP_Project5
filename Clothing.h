@@ -1,3 +1,8 @@
+#pragma once
+#include "Shoe.h"
+#include "LeakedObjectDetector.h"
+
+
 struct Clothing
 {
     Shoe blazer;

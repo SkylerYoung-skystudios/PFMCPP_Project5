@@ -29,8 +29,10 @@
  Remember, your Chapter 3 Part 4 task worked when it was all in one file. so you shouldn't need to edit any of it.  
          just split it up into source files and provide the appropriate #include directives.
  */
-#include "LeakedObjectDetector.h"
+#pragma once
 #include "Wrappers.h"
+#include "Band.h"
+#include "Clothing.h"
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH

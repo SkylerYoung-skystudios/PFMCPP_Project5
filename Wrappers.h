@@ -1,8 +1,6 @@
-#include "Shoe.cpp"
-#include "Wurlitzer.cpp"
-#include "ElectricBass.cpp"
-#include "Band.cpp"
-#include "Clothing.cpp"
+#pragma once
+#include "Band.h"
+#include "Clothing.h"
 
 struct ShoeWrapper
 {

@@ -1,3 +1,6 @@
+#include "LeakedObjectDetector.h"
+#include <iostream>
+
 struct ElectricBass
 {
     int numStrings = 4;

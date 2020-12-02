@@ -1,3 +1,6 @@
+#include "LeakedObjectDetector.h"
+#include <iostream>
+
 struct Shoe
 {
     std::string brand { "Nike" };

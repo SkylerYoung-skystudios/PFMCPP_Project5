@@ -1,3 +1,10 @@
+#pragma once
+#include "Wurlitzer.h"
+#include "ElectricBass.h"
+#include "LeakedObjectDetector.h"
+#include <iostream>
+
+
 struct Band
 {
     Wurlitzer keys;
