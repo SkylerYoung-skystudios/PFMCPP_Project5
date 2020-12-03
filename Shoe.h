@@ -18,10 +18,7 @@ struct Shoe
     void takeOff ( std::string firstShoe = "R", bool leftFirst = true );
     void throwAway ( bool donate = false );
     void wearDown(int timesWorn);
-    void print()  FIXME see instruction 5)
-    {
-        std::cout << "These shoes are in " << this->condition << " condition" << std::endl;
-    }
+    void print();
 
     JUCE_LEAK_DETECTOR(Shoe)
 };

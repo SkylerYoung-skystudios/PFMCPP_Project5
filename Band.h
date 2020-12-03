@@ -13,10 +13,7 @@ struct Band
 
     void tune();
     void turnDown(int amount);
-    void print()  FIXME see instruction 5)
-    {
-        std::cout << "There are " << this->members << " members in the band" << std::endl;
-    }
+    void print();
     
     Band();
     ~Band();

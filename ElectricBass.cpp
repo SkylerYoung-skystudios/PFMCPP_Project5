@@ -26,6 +26,11 @@ void ElectricBass::restring( bool restring )
     }
 }
 
+void ElectricBass::print()
+{
+    std::cout << "This Bass costs $" << this->cost << std::endl;
+}
+
 void ElectricBass::checkStrings (int timesPlayed)
 {
     for (int i = 0; i <= timesPlayed; i += 1)

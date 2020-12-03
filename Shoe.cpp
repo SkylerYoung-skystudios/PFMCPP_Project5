@@ -29,7 +29,11 @@ void Shoe::throwAway(bool donate)
     {
         donate = true;
     }
-    
+}
+
+void Shoe::print()
+{
+    std::cout << "These shoes are in " << this->condition << " condition" << std::endl;
 }
 
 void Shoe::wearDown(int timesWorn)

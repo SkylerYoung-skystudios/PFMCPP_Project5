@@ -52,3 +52,8 @@ int Wurlitzer::swellVolume(int amount, int time)
     }
     return swell;
 }
+
+void Wurlitzer::print()
+{
+    std::cout << "The Wulitzer has " << this->numKeys << " keys" << std::endl;
+}

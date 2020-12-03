@@ -21,10 +21,7 @@ struct ElectricBass
     void sold ( int price = 1200 );
     void restring ( bool restring = true );
     void checkStrings (int timesPlayed);
-    void print() FIXME see instruction 5)
-    {
-        std::cout << "This Bass costs $" << this->cost << std::endl;
-    }
+    void print();
 
     JUCE_LEAK_DETECTOR(ElectricBass)
 };

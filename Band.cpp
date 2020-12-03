@@ -12,6 +12,11 @@ void Band::turnDown(int amount)
     bass.output -= amount;  
 }
 
+void Band::print()
+{
+    std::cout << "There are " << this->members << " members in the band" << std::endl;
+}
+
 Band::Band(){}
 Band::~Band()
 {
@@ -20,3 +25,4 @@ Band::~Band()
         std::cout << "Turn off Wurlitzer\n";
     }
 }
+

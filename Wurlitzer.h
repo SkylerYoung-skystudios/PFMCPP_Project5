@@ -20,10 +20,7 @@ struct Wurlitzer
     void power ( bool switchPosition = true );
     void printCondition();
     int swellVolume(int amount, int time);
-    void print()  FIXME see instruction 5)
-    {
-        std::cout << "The Wulitzer has " << this->numKeys << " keys" << std::endl;
-    }
+    void print();
 
     JUCE_LEAK_DETECTOR(Wurlitzer)
 };
