@@ -1,6 +1,8 @@
-#pragma once
-#include "Band.h"
-#include "Clothing.h"
+struct Shoe;
+struct Wurlitzer;
+struct ElectricBass;
+struct Band;
+struct Clothing;
 
 struct ShoeWrapper
 {

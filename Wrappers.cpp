@@ -1,4 +1,6 @@
 #include "Wrappers.h"
+#include "Clothing.h"
+#include "Band.h"
 
 ShoeWrapper::ShoeWrapper( Shoe* shoePtr ) : theShoe(shoePtr) { }
 ShoeWrapper::~ShoeWrapper() { delete theShoe; }

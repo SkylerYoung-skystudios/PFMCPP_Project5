@@ -31,6 +31,8 @@
  */
 
 #include "Wrappers.h"
+#include "Band.h"
+#include "Clothing.h"
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 

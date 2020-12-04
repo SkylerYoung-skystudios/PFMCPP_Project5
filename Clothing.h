@@ -1,7 +1,6 @@
 #pragma once
-#include "Shoe.h"
 #include "LeakedObjectDetector.h"
-
+#include "Shoe.h"
 
 struct Clothing
 {
